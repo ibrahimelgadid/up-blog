@@ -10,13 +10,17 @@ import {
   Divider,
   CardFooter,
   Button,
+  Avatar,
 } from "@chakra-ui/react";
 import React from "react";
 import { IUserAccountSummaryProps } from "../lib/interfaces/IRightSidePannel";
 
-function UserAccountSummary({ userData }: IUserAccountSummaryProps) {
+function UserAccountSummary({
+  userData,
+  currentPage,
+}: IUserAccountSummaryProps) {
   return (
-    <Card w={"full"} height={"60%"} bg={"white"} borderRadius={"sm"}>
+    <Card w={"full"} height={"60%"} borderRadius={"sm"}>
       <CardBody>
         <Flex
           position={"relative"}
@@ -36,16 +40,13 @@ function UserAccountSummary({ userData }: IUserAccountSummaryProps) {
             left={"50%"}
             transform={"auto-gpu"}
             translateX={"-50%"}
-            borderRadius={"lg"}
+            borderRadius={"50%"}
             overflow={"hidden"}
           >
-            <Image
-              src={userData.avatar}
-              alt="user-img"
-              width={"80px"}
-              height={"80px"}
-              borderRadius={"lg"}
-              overflow={"hidden"}
+            <Avatar
+              size={"xl"}
+              src={userData?.avatar}
+              name={`${userData?.firstName} ${userData?.lastName}`}
             />
           </VStack>
         </Flex>
@@ -111,15 +112,29 @@ function UserAccountSummary({ userData }: IUserAccountSummaryProps) {
         </HStack>
       </CardBody>
       <CardFooter paddingTop={"0.5rem"}>
-        <Button
-          leftIcon={<EditIcon />}
-          inlineSize={"full"}
-          variant={"solid"}
-          size={"sm"}
-          colorScheme={"messenger"}
-        >
-          create as post
-        </Button>
+        {currentPage !== "/articles" ? (
+          <Button
+            leftIcon={<EditIcon />}
+            inlineSize={"full"}
+            variant={"solid"}
+            size={"md"}
+            borderRadius={"md"}
+            colorScheme={"messenger"}
+          >
+            create a post
+          </Button>
+        ) : (
+          <Button
+            leftIcon={<EditIcon />}
+            inlineSize={"full"}
+            variant={"solid"}
+            size={"md"}
+            borderRadius={"md"}
+            colorScheme={"cyan"}
+          >
+            create an article
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

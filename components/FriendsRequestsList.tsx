@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Button,
   Divider,
   Flex,
@@ -21,13 +22,6 @@ function FriendsRequestsList({
       overflowY={"auto"}
       borderRadius={"sm"}
     >
-      <Text
-        fontSize={"sm"}
-        fontWeight={"bold"}
-        textTransform={"uppercase"}
-        color="InactiveCaptionText"
-        mr={"auto"}
-      ></Text>
       <Flex as={"ul"} w={"100%"} flexDirection={"column"} justify="flex-start">
         {Array.isArray(friendsRequestsData) &&
           friendsRequestsData.map(
@@ -44,11 +38,10 @@ function FriendsRequestsList({
                     type="button"
                     variant={"ghost"}
                     leftIcon={
-                      <Image
+                      <Avatar
+                        size={"sm"}
                         src={avatar}
-                        alt="fav-people-usr"
-                        w={"30px"}
-                        borderRadius={"50%"}
+                        name={`${firstName} ${lastName}`}
                       />
                     }
                     w={"100%"}

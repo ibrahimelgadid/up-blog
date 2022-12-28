@@ -1,12 +1,11 @@
 import React from "react";
 
-export interface ISideContentListProps {
-  SideFaviouritesPeopleListData: IFaviouritesPeopleListData[];
-
+export interface ISideWritersListProps {
+  writerPeopleListData: IWritersPeopleListData[];
 }
-export interface IFaviouritesPeopleListData {
+export interface IWritersPeopleListData {
   key: string;
   image: string;
   name: string;
-  isFavourite: boolean;
+  articlesCount: number;
 }

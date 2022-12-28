@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { AppProps } from "next/app";
 import {
   Button,
@@ -12,8 +12,6 @@ import {
   Flex,
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -39,9 +37,17 @@ const theme = extendTheme({
 });
 export default function App({ Component, pageProps }: AppProps) {
   const [largeMedia] = useMediaQuery("(max-width: 992px)");
+  const router = useRouter();
+  const notPages: boolean = Boolean(
+    router?.pathname !== "/login" &&
+      router?.pathname !== "/signup" &&
+      router?.pathname !== "/404"
+  );
+  const notArticlesPage = Boolean(router?.pathname !== "/articles");
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const router = useRouter();
+
+  // useEffect(() => {}, []);
   return (
     <ChakraProvider theme={theme}>
       {router?.pathname !== "/login" && router?.pathname !== "/signup" && (
@@ -66,20 +72,17 @@ export default function App({ Component, pageProps }: AppProps) {
       )}
 
       <Flex
+        position={"relative"}
         maxH={"91dvh"}
-        h={"95dvh"}
-        justify="space-between"
+        h={"100dvh"}
+        justify={"center"}
         paddingInline={largeMedia ? "0.5rem" : "3.5rem"}
-        bg={"gray.200"}
+        bg={"gray.100"}
       >
-        {!largeMedia &&
-          router?.pathname !== "/login" &&
-          router?.pathname !== "/signup" && <LeftSidePannel />}
+        {!largeMedia && notPages && notArticlesPage && <LeftSidePannel />}
 
         <Component {...pageProps} />
-        {!largeMedia &&
-          router?.pathname !== "/login" &&
-          router?.pathname !== "/signup" && <RightSidePannel />}
+        {!largeMedia && notPages && <RightSidePannel />}
         <Drawer
           isOpen={isOpen}
           placement={"right"}

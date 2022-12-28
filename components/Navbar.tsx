@@ -14,7 +14,7 @@ function Navbar({ navbarDataSource }: navbarProps) {
       paddingInline={"0.5"}
       justifyContent={"flex-end"}
     >
-      <Tabs variant={"enclosed-colored"}>
+      <Tabs variant={"soft-rounded"}>
         <TabList as={"ul"} gap={"5px"} paddingBlock={"0.5rem"}>
           {Array.isArray(navbarDataSource) &&
             navbarDataSource.map(({ currentTab, icon, key, label, url }) => (
@@ -27,12 +27,9 @@ function Navbar({ navbarDataSource }: navbarProps) {
                 justifyContent={"center"}
                 onClick={() => setCurrentTab(currentTab)}
                 href={url}
-                _selected={{ color: "white", bg: "messenger.600" }}
-                borderRadius={"25px"}
                 paddingBlock={"0.4rem"}
                 textTransform={"uppercase"}
                 fontWeight={"semibold"}
-                bg={"gray.100"}
                 paddingInline={
                   currentTab === currentTabState ? "1.2rem" : "0.5rem"
                 }

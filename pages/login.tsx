@@ -33,14 +33,22 @@ const login = () => {
     password: "",
     isRemembered: false,
   });
-
+  const [isValidFields, setIsValidFields] = useState({
+    email: false,
+    password: false,
+  });
   const handleGetLoginData = (ev: React.ChangeEvent) => {
     const target = ev.target as HTMLInputElement;
     const value = target.value;
     const field = target.name;
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
-
+  const handleCheckFieldValidtion = () => {
+    setIsValidFields({
+      email: formData.email === "",
+      password: formData.password === "",
+    });
+  };
   return (
     <>
       <Head>
@@ -48,6 +56,9 @@ const login = () => {
       </Head>
       <Flex
         height={"100dvh"}
+        minH={"100dvh"}
+        overflowY={"auto"}
+        paddingBlockEnd={"1rem"}
         width={"full"}
         direction={"column"}
         position={"fixed"}
@@ -57,12 +68,13 @@ const login = () => {
       >
         <HStack
           width={"full"}
-          height={"85px"}
+          minHeight={"55px"}
           paddingInline={"1rem"}
           justify={"space-between"}
           alignItems={"center"}
           borderBottom={"1px solid"}
-          borderColor={"gray.400"}
+          borderColor={"gray.300"}
+          backgroundColor={"whitesmoke"}
         >
           <Button
             variant={"ghost"}
@@ -77,7 +89,7 @@ const login = () => {
           <Button
             size={"sm"}
             variant={"ghost"}
-            colorScheme={"messenger"}
+            colorScheme={"gray"}
             borderRadius={"sm"}
             textTransform={"capitalize"}
             as={NextLink}
@@ -99,7 +111,7 @@ const login = () => {
           </Heading>
         </VStack>
         <Stack
-          flexDirection={maxLargeMediaQuery ? "column" : "row"}
+          flexDirection={maxLargeMediaQuery ? "column-reverse" : "row"}
           bg={"white"}
           height={"full"}
           justify={"center"}
@@ -112,16 +124,17 @@ const login = () => {
             mx={maxLargeMediaQuery ? "auto" : "1.5rem"}
             alignItems={"flex-start"}
           >
-            <FormControl isInvalid={Boolean(formData.email === "")} isRequired>
+            <FormControl isInvalid={Boolean(isValidFields.email)} isRequired>
               <FormLabel>Email</FormLabel>
               <Input
                 type={"email"}
-                variant={"outline"}
+                variant={"filled"}
                 size={"sm"}
                 placeholder="example@email.com"
                 name="email"
                 id="email-address"
                 onChange={handleGetLoginData}
+                onFocus={() => handleCheckFieldValidtion()}
               />
               {formData.email === "" && (
                 <FormErrorMessage>
@@ -129,21 +142,19 @@ const login = () => {
                 </FormErrorMessage>
               )}
             </FormControl>
-            <FormControl
-              isInvalid={Boolean(formData.password === "")}
-              isRequired
-            >
+            <FormControl isInvalid={Boolean(isValidFields.password)} isRequired>
               <FormLabel>password</FormLabel>
               <Input
                 type={"password"}
-                variant={"outline"}
+                variant={"filled"}
                 size={"sm"}
                 placeholder="***********"
                 name="password"
                 id="password-key"
                 onChange={handleGetLoginData}
+                onFocus={() => handleCheckFieldValidtion()}
               />
-              {formData.password === "" && (
+              {isValidFields.password && (
                 <FormErrorMessage>password is required field</FormErrorMessage>
               )}
             </FormControl>
@@ -193,12 +204,15 @@ const login = () => {
             width={maxLargeMediaQuery ? "90%" : "auto"}
             height={maxLargeMediaQuery ? "auto" : "60%"}
           />
-          <VStack w={maxLargeMediaQuery ? "90%" : "25%"}>
+          <VStack
+            w={maxLargeMediaQuery ? "90%" : "25%"}
+            py={maxLargeMediaQuery ? "1rem" : undefined}
+          >
             <VStack w={maxLargeMediaQuery ? "100%" : "auto"}>
               <Button
                 variant={"outline"}
                 leftIcon={<GoogleLogoSVG />}
-                colorScheme={"messenger"}
+                colorScheme={"gray"}
                 width={"full"}
                 display={"flex"}
                 justifyContent={"flex-start"}
@@ -212,7 +226,7 @@ const login = () => {
               <Button
                 variant={"outline"}
                 leftIcon={<FacebookLogoSVG />}
-                colorScheme={"messenger"}
+                colorScheme={"gray"}
                 width={"full"}
                 display={"flex"}
                 justifyContent={"flex-start"}

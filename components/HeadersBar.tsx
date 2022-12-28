@@ -44,7 +44,7 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
       icon: <BellIcon width={"20px"} />,
     },
   ];
-  console.log(mediaIsSmall);
+
   return (
     <HStack
       as={"header"}
@@ -66,14 +66,8 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
           alignItems={"center"}
         >
           {!mediaIsSmall ? (
-            <Logo />
-          ) : (
-            <Flex width={"90%"} justify={"center"} alignItems={"center"}>
-              <Logo />
-            </Flex>
-          )}
-          {!mediaIsSmall && (
             <>
+              <Logo />
               <Navbar navbarDataSource={navbarLinks} />
               <NavbarControlButtons
                 userData={{
@@ -84,8 +78,14 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
                 }}
               />
             </>
+          ) : (
+            <>
+              <Flex width={"95%"} justify={"center"} alignItems={"center"}>
+                <Logo />
+              </Flex>
+              {appDrowerButton}
+            </>
           )}
-          {mediaIsSmall && appDrowerButton}
         </Flex>
       </Container>
     </HStack>

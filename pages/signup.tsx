@@ -35,6 +35,12 @@ const Signup = () => {
     password: "",
     isAgreement: false,
   });
+  const [isValidFields, setIsValidFields] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    password: false,
+  });
 
   const handleGetSignupData = (ev: React.ChangeEvent) => {
     const target = ev.target as HTMLInputElement;
@@ -43,13 +49,24 @@ const Signup = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleCheckFieldValidtion = () => {
+    setIsValidFields({
+      email: formData.email === "",
+      password: formData.password === "",
+      firstName: formData.firstName === "",
+      lastName: formData.lastName === "",
+    });
+  };
+
   return (
     <>
       <Head>
         <title>Up Blog | SIGNUP</title>
       </Head>
       <Flex
-        minHeight={"100dvh"}
+        height={"100dvh"}
+        minH={"100dvh"}
+        overflowY={"auto"}
         width={"full"}
         direction={"column"}
         position={"fixed"}
@@ -59,12 +76,13 @@ const Signup = () => {
       >
         <HStack
           width={"full"}
-          height={"65px"}
+          minHeight={"55px"}
           paddingInline={"1rem"}
           justify={"space-between"}
           alignItems={"center"}
           borderBottom={"1px solid"}
-          borderColor={"gray.400"}
+          borderColor={"gray.300"}
+          backgroundColor={"whitesmoke"}
         >
           <Button
             variant={"ghost"}
@@ -103,7 +121,7 @@ const Signup = () => {
         </VStack>
         <Stack
           flexDirection={maxLargeMediaQuery ? "column" : "row"}
-          bg={"white"}
+          // bg={"white"}
           height={"full"}
           justify={"center"}
           gap={"15px"}
@@ -115,80 +133,83 @@ const Signup = () => {
             mx={maxLargeMediaQuery ? "auto" : "1.5rem"}
             alignItems={"flex-start"}
           >
-            <HStack justifyContent={"flex-start"} alignItems={"center"}>
+            <HStack
+              justifyContent={"flex-start"}
+              alignItems={"center"}
+              w={"full"}
+            >
               <FormControl
-                isInvalid={Boolean(formData.firstName === "")}
+                isInvalid={Boolean(isValidFields.firstName)}
                 isRequired
               >
                 <FormLabel>firstname</FormLabel>
                 <Input
                   type={"text"}
-                  variant={"outline"}
+                  variant={"filled"}
                   size={"sm"}
                   placeholder="John"
                   name="firstName"
                   id="first-name"
                   onChange={handleGetSignupData}
+                  onFocus={handleCheckFieldValidtion}
                 />
-                {formData.firstName === "" && (
+                {isValidFields.firstName && (
                   <FormErrorMessage>
                     firstname is required field
                   </FormErrorMessage>
                 )}
               </FormControl>
               <FormControl
-                isInvalid={Boolean(formData.lastName === "")}
+                isInvalid={Boolean(isValidFields.lastName)}
                 isRequired
               >
                 <FormLabel>lastname</FormLabel>
                 <Input
                   type={"text"}
-                  variant={"outline"}
+                  variant={"filled"}
                   size={"sm"}
                   placeholder="Doe"
                   name="lastName"
                   id="last-name"
                   onChange={handleGetSignupData}
+                  onFocus={handleCheckFieldValidtion}
                 />
-                {formData.lastName === "" && (
+                {isValidFields.lastName && (
                   <FormErrorMessage>
                     lastname is required field
                   </FormErrorMessage>
                 )}
               </FormControl>
             </HStack>
-            <FormControl isInvalid={Boolean(formData.email === "")} isRequired>
+            <FormControl isInvalid={Boolean(isValidFields.email)} isRequired>
               <FormLabel>Email</FormLabel>
               <Input
                 type={"email"}
-                variant={"outline"}
+                variant={"filled"}
                 size={"sm"}
                 placeholder="example@email.com"
                 name="email"
                 id="email-address"
                 onChange={handleGetSignupData}
               />
-              {formData.email === "" && (
+              {isValidFields.email && (
                 <FormErrorMessage>
                   Email address is required field
                 </FormErrorMessage>
               )}
             </FormControl>
-            <FormControl
-              isInvalid={Boolean(formData.password === "")}
-              isRequired
-            >
+            <FormControl isInvalid={Boolean(isValidFields.password)} isRequired>
               <FormLabel>password</FormLabel>
               <Input
                 type={"password"}
-                variant={"outline"}
+                variant={"filled"}
                 size={"sm"}
                 placeholder="***********"
                 name="password"
                 id="password-key"
                 onChange={handleGetSignupData}
               />
-              {formData.password === "" && (
+              {isValidFields.password && (
                 <FormErrorMessage>password is required field</FormErrorMessage>
               )}
             </FormControl>
@@ -240,7 +261,7 @@ const Signup = () => {
               <Button
                 variant={"outline"}
                 leftIcon={<GoogleLogoSVG />}
-                colorScheme={"messenger"}
+                colorScheme={"gray"}
                 width={"full"}
                 display={"flex"}
                 justifyContent={"flex-start"}
@@ -254,7 +275,7 @@ const Signup = () => {
               <Button
                 variant={"outline"}
                 leftIcon={<FacebookLogoSVG />}
-                colorScheme={"messenger"}
+                colorScheme={"gray"}
                 width={"full"}
                 display={"flex"}
                 justifyContent={"flex-start"}

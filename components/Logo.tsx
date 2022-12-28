@@ -1,16 +1,29 @@
 import React from "react";
-import { Flex, VStack, Text } from "@chakra-ui/react";
+import { Flex, VStack, Text, Image } from "@chakra-ui/react";
+import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
 
-import { ArrowUpIcon } from "@chakra-ui/icons";
 function Logo() {
   return (
-    <VStack maxW={"90px"} paddingInline={"1rem"}>
-      <ArrowUpIcon textColor={"purple.500"} fontSize={"2xl"} />
+    <VStack
+      maxW={"95px"}
+      paddingInline={"0.7rem"}
+      paddingBlock={"0.1rem"}
+      borderRadius={"50%"}
+      alignItems={"flex-start"}
+    >
+      <ArrowTrendingUpIcon
+        width={"1.5rem"}
+        color={"#0014FF"}
+        fontWeight={"bold"}
+      />
+
       <Text
         fontSize={"xl"}
-        lineHeight={"24px"}
+        lineHeight={"18px"}
         textTransform={"uppercase"}
+        color={"black"}
         mt={"0px !important"}
+        fontWeight={"bold"}
       >
         UP
       </Text>

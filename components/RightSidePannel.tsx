@@ -1,11 +1,13 @@
 import { Flex, Text, VStack } from "@chakra-ui/react";
 import { nanoid } from "@reduxjs/toolkit";
+import { useRouter } from "next/router";
 import React from "react";
 import { IFrindRequist } from "../lib/interfaces/iApp";
 import FriendsRequestsList from "./FriendsRequestsList";
 import UserAccountSummary from "./UserAccountSummary";
 
 function RightSidePannel() {
+  const router = useRouter();
   const friendRequestDataSource: IFrindRequist[] = [
     {
       key: nanoid(4),
@@ -66,16 +68,21 @@ function RightSidePannel() {
   ];
   return (
     <VStack
+      position={"fixed"}
+      top={"53px"}
+      right={"0px"}
       as={"div"}
       width={"22%"}
-      height={"95%"}
+      height={"92%"}
       justify={"space-between"}
-      borderRadius={"md"}
-      padding={"0.5rem"}
-      mt={"0.5rem"}
+      borderRadius={"sm"}
       overflowY={"hidden"}
+      bg={"white"}
+      borderInline={"1px solid"}
+      borderColor={"gray.300"}
     >
       <UserAccountSummary
+        currentPage={router?.pathname}
         userData={{
           avatar: "https://picsum.photos/151.webp",
           firstName: "ahmed",
@@ -93,9 +100,7 @@ function RightSidePannel() {
         width={"100%"}
         height={"40%"}
         padding={"0.5rem"}
-        bg={"white"}
-        border={"1px solid"}
-        borderColor={"gray.300"}
+        marginTop={"0px !important"}
       >
         <Text
           fontSize={"sm"}

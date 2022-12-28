@@ -18,6 +18,7 @@ import {
   MenuOptionGroup,
   MenuDivider,
   IconButton,
+  AspectRatio,
 } from "@chakra-ui/react";
 import React from "react";
 import NextLink from "next/link";
@@ -40,14 +41,17 @@ function Post({ postData }: IPostProps) {
       direction={"column"}
       bg={"white"}
       shadow={"md"}
-      mb={"1.2rem"}
+      mb={"1rem"}
       borderRadius={"sm"}
     >
       <HStack
         height={"fit-content"}
         paddingInline={"1rem"}
-        paddingBlockStart={"1rem"}
+        paddingBlockStart={"0.5rem"}
+        paddingBlockEnd={"0.3rem"}
         bg={"white"}
+        borderBottom={"1px solid"}
+        borderColor={"gray.200"}
       >
         <Avatar
           size={"md"}
@@ -95,7 +99,7 @@ function Post({ postData }: IPostProps) {
           </Menu>
         </VStack>
       </HStack>
-      <VStack paddingInline={"1rem"} paddingBlock={"0.5rem"}>
+      <VStack paddingInline={"1rem"} paddingBlock={"0.5rem"} bg={"whitesmoke"}>
         <Text noOfLines={showMoreTextContent ? undefined : 2}>
           {postData?.postContent}
         </Text>
@@ -110,21 +114,20 @@ function Post({ postData }: IPostProps) {
       </VStack>
       {postData?.postMedia !== null && (
         <VStack>
-          <Image
-            style={{ aspectRatio: "16 / 9" }}
-            src={postData?.postMedia}
-            alt="post-media"
-            h={"320px"}
-            w={"100%"}
-            objectFit={"cover"}
-          />
+          <AspectRatio w={"100%"} h={"320px"} ratio={16 / 9}>
+            <Image
+              src={postData?.postMedia}
+              alt="post-media"
+              objectFit={"cover"}
+            />
+          </AspectRatio>
         </VStack>
       )}
       <Divider />
       <HStack
         alignItems={"center"}
         justify={"flex-start"}
-        gap={"1rem"}
+        gap={"2px"}
         paddingInline={"1rem"}
         paddingBlock={"0.2rem"}
       >
@@ -137,7 +140,7 @@ function Post({ postData }: IPostProps) {
           textTransform={"uppercase"}
           fontSize={"xs"}
           size={"sm"}
-          borderRadius={"35px"}
+          borderRadius={"sm"}
           colorScheme={"messenger"}
         >
           {postData?.upCount}
@@ -151,7 +154,7 @@ function Post({ postData }: IPostProps) {
           textTransform={"uppercase"}
           fontSize={"xs"}
           size={"sm"}
-          borderRadius={"35px"}
+          borderRadius={"sm"}
           colorScheme={"messenger"}
         >
           {postData?.comments?.length}
@@ -165,7 +168,7 @@ function Post({ postData }: IPostProps) {
           textTransform={"uppercase"}
           size={"sm"}
           fontSize={"xs"}
-          borderRadius={"35px"}
+          borderRadius={"sm"}
           colorScheme={"messenger"}
         >
           {postData?.shearCount}
