@@ -1,4 +1,8 @@
 ## UP Blog
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1f0aeebca41b531ecd4d5a23d39e6b97658a484f
 
 ## Getting Started
 
@@ -7,6 +11,7 @@ It is a Blogger community that contains articles for news and etc. Questions tha
 ### Prerequisites
 
 What things you need to install the software and how to install them
+<<<<<<< HEAD
 
 ```
 npm install
@@ -47,3 +52,39 @@ live demo link :
 
 - **ahmed shehata** - _front-end work_ - [ahmedshehata](https://github.com/ahmedshehata98)
 - **Mahmoud El-Nakeeb** - _back-end work_ - [ahmedshehata](https://github.com/mahmoudalnkeeb)
+=======
+```
+npm install
+```
+to tun and use live devevlopment server
+```
+npm run dev
+```
+to get build your final work
+
+```
+npm run build
+```
+
+live demo link : 
+#### comming soon ...
+
+## Built With
+#### Front-end :
+* [next js](https://nextjs.org/docs/) - The frontend framework 
+* [React js](https://reactjs.org/) - The javascript library used
+* [Chakra UI](https://chakra-ui.com/) - React components framework
+* [Webpack](https://webpack.js.org/) - Dependency Management
+* [Redux toolkit](redux-toolkit.js.org) - State managment library
+* [React Query](https://tanstack.com/query) - asynchronous state management
+
+#### back-end :
+* [node js](https://nodejs.org/en/) - open-source, cross-platform JavaScript runtime environment
+
+
+## Authors
+
+* **ahmed shehata** - *front-end work* - [ahmedshehata](https://github.com/ahmedshehata98)
+* **Mahmoud El-Nakeeb** - *back-end work* - [ahmedshehata](https://github.com/mahmoudalnkeeb)
+
+>>>>>>> 1f0aeebca41b531ecd4d5a23d39e6b97658a484f
