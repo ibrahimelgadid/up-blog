@@ -102,7 +102,7 @@ function NavbarControlButtons({ userData }: NavbarControlButtonsProps) {
                   </Avatar>
                 </Stack>
                 <VStack justify={"center"} alignItems={"flex-start"}>
-                  <Link href="#" textTransform={"capitalize"}>
+                  <Link href="/profile" textTransform={"capitalize"}>
                     profile settings
                   </Link>
                   <Text

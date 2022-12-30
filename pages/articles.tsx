@@ -9,7 +9,7 @@ const articles = () => {
     {
       id: nanoid(4),
 
-      media: "https://picsum.photos/200.webp",
+      media: "https://picsum.photos/800.webp",
       title: "article title will be displayed here",
       puplishAt: "2022-12-28T10:53:20.767Z",
       timeStamp: "14 minutes ago",
@@ -26,7 +26,7 @@ const articles = () => {
     {
       id: nanoid(4),
 
-      media: "https://picsum.photos/201.webp",
+      media: "https://picsum.photos/801.webp",
       title: "article title will be displayed here",
       puplishAt: "2022-12-28T10:53:20.767Z",
       timeStamp: "14 minutes ago",
@@ -43,7 +43,7 @@ const articles = () => {
     {
       id: nanoid(4),
 
-      media: "https://picsum.photos/202.webp",
+      media: "https://picsum.photos/802.webp",
       title: "article title will be displayed here",
       puplishAt: "2022-12-28T10:53:20.767Z",
       timeStamp: "14 minutes ago",
@@ -59,7 +59,7 @@ const articles = () => {
     },
     {
       id: nanoid(4),
-      media: "https://picsum.photos/203.webp",
+      media: "https://picsum.photos/803.webp",
       title: "article title will be displayed here",
       puplishAt: "2022-12-28T10:53:20.767Z",
       timeStamp: "14 minutes ago",

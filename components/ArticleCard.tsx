@@ -1,6 +1,7 @@
 import {
   AspectRatio,
   Avatar,
+  Heading,
   HStack,
   Image,
   Text,
@@ -12,7 +13,7 @@ import { IArticleCardProps } from "../lib/interfaces/IArticles";
 
 function ArticleCard({ ArticleCardData }: IArticleCardProps) {
   return (
-    <HStack
+    <VStack
       as={Link}
       href={`/articles/${ArticleCardData?.id}`}
       bg={"white"}
@@ -22,8 +23,14 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
       alignItems={"flex-start"}
       padding={"1rem"}
     >
-      <AspectRatio as={"figure"} w={"170px"} ratio={1}>
-        <Image src={ArticleCardData?.media} alt={"article-img"} />
+      <AspectRatio as={"figure"} w={"100%"} h={"310px"} ratio={16 / 12}>
+        <Image
+          src={ArticleCardData?.media}
+          alt={"article-img"}
+          objectFit={"cover"}
+          w={"full"}
+          borderRadius={"md"}
+        />
       </AspectRatio>
       <VStack
         alignItems={"flex-start"}
@@ -37,9 +44,13 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
           justifyContent={"flex-start"}
           w={"100%"}
         >
-          <Text fontWeight={"semibold"} textTransform={"capitalize"}>
+          <Heading
+            fontSize={"xl"}
+            fontWeight={"semibold"}
+            textTransform={"capitalize"}
+          >
             {ArticleCardData?.title}
-          </Text>
+          </Heading>
           <HStack spacing={"0.5rem"} mb={"1rem"}>
             <HStack>
               <Avatar
@@ -72,7 +83,7 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
           <Text>{ArticleCardData?.articleDescribtion}</Text>
         </VStack>
       </VStack>
-    </HStack>
+    </VStack>
   );
 }
 
