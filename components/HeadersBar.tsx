@@ -56,7 +56,7 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
       height={"53px"}
       position={"sticky"}
       top={0}
-      zIndex={"sticky"}
+      zIndex={"overlay"}
     >
       <Container maxW={"container.xl"}>
         <Flex

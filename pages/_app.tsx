@@ -74,8 +74,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Flex
         position={"relative"}
-        maxH={"91dvh"}
-        h={"100dvh"}
+        minH={"100dvh"}
         justify={"center"}
         paddingInline={largeMedia ? "0.5rem" : "3.5rem"}
         bg={"gray.100"}

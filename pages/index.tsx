@@ -102,10 +102,10 @@ export default function Home() {
         as={"main"}
         position={"relative"}
         width={maxLargeMedia ? "full" : "45%"}
-        h={"90vh"}
-        maxH={"90vh"}
+        // h={"90vh"}
+        // maxH={"90vh"}
+        // overflowY={"auto"}
         marginBlockStart={"0.6rem"}
-        overflowY={"auto"}
         sx={{
           "::-webkit-scrollbar": {
             display: "none",
