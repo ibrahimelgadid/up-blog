@@ -4,6 +4,7 @@ import {
   useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
+import { nanoid } from "@reduxjs/toolkit";
 import Head from "next/head";
 import Image from "next/image";
 import Post from "../components/Post";
@@ -110,7 +111,7 @@ export default function Home() {
       >
         <UnorderedList w={"100%"}>
           {postsDataSource.map((post) => (
-            <ListItem listStyleType={"none"}>
+            <ListItem key={nanoid(8)} listStyleType={"none"}>
               <Post postData={post} />
             </ListItem>
           ))}

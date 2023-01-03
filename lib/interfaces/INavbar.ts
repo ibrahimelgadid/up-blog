@@ -1,5 +1,5 @@
-import { IUser } from "./IRightSidePannel";
 import { ReactNode } from "react";
+import { IUser } from "./iApp";
 
 export type NavbarControlButtonsProps = {
   userData: Partial<IUser>;

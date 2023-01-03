@@ -1,4 +1,4 @@
-import { Search2Icon } from "@chakra-ui/icons";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import {
   Box,
   Flex,
@@ -62,10 +62,9 @@ function LeftSidePannel() {
     >
       <Flex flexDirection={"column"}>
         <InputGroup>
-          <InputLeftElement
-            pointerEvents={"none"}
-            children={<Search2Icon fontSize={"sm"} />}
-          />
+          <InputLeftElement pointerEvents={"none"}>
+            <MagnifyingGlassIcon width={"20px"} color="gray.500" />
+          </InputLeftElement>
           <Input
             type="search"
             placeholder="search people or group .."
