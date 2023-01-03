@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, VStack, Text, Image } from "@chakra-ui/react";
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
 
-function Logo() {
+function Logo({ textColor }: { textColor?: boolean }) {
   return (
     <VStack
       maxW={"95px"}
@@ -13,7 +13,7 @@ function Logo() {
     >
       <ArrowTrendingUpIcon
         width={"1.5rem"}
-        color={"#0014FF"}
+        color={textColor ? "#11b0e0" : "#0014FF"}
         fontWeight={"bold"}
       />
 
@@ -21,7 +21,7 @@ function Logo() {
         fontSize={"xl"}
         lineHeight={"18px"}
         textTransform={"uppercase"}
-        color={"black"}
+        color={textColor ? "white" : "black"}
         mt={"0px !important"}
         fontWeight={"bold"}
       >
