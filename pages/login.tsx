@@ -77,6 +77,8 @@ const Login = () => {
           backgroundColor={"whitesmoke"}
         >
           <Button
+            as={NextLink}
+            href={"/"}
             variant={"ghost"}
             leftIcon={<ChevronLeftIcon fontSize={"1.5rem"} />}
             display={"flex"}

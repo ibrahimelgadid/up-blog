@@ -80,16 +80,18 @@ export default function LandingPage() {
           )}
           <VStack>
             <Heading
-              maxW={maxLargeMedia ? "95%" : "75%"}
-              display={"flex"}
+              maxW={maxLargeMedia ? "auto" : "75%"}
               textColor={"white"}
               textAlign={"center"}
               mt={"4rem"}
               mb={"1rem"}
               textTransform={"uppercase"}
             >
-              Let's start the digital transformation, let's make the world
-              better Knowlage with<Text color={"messenger.400"}>UP</Text>
+              Let&apos;s start the digital transformation let&apos;s make the
+              world better Knowlage with
+              <Text display={"inline"} color={"messenger.400"} px={"0.6rem"}>
+                UP
+              </Text>
             </Heading>
             <Text
               maxW={maxLargeMedia ? "95%" : "65%"}
@@ -97,13 +99,14 @@ export default function LandingPage() {
               textAlign={"center"}
               mb={"4rem"}
               textTransform={"capitalize"}
+              fontSize={"sm"}
             >
               It will be your favorite place to create leaflets about your
               experience with the things that you prefer between your colleagues
               and the latest sincere news, to create your blogs in an
               interactive society that loves to know and advise that it is your
               favorite blog to contain your blogs with the flavor of social
-              networking sites. What are you waiting for! Let's go
+              networking sites. What are you waiting for! Let&apos;s go
             </Text>
             <HStack paddingTop={"2rem"} w={"full"}>
               <Button
@@ -114,7 +117,7 @@ export default function LandingPage() {
                 mx={"auto"}
                 width={maxLargeMedia ? "100%" : "auto"}
               >
-                Let's join now
+                Let&apos;s join now
               </Button>
             </HStack>
           </VStack>
