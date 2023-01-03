@@ -62,7 +62,10 @@ function LeftSidePannel() {
     >
       <Flex flexDirection={"column"}>
         <InputGroup>
-          <InputLeftElement pointerEvents={"none"} children={<Search2Icon />} />
+          <InputLeftElement
+            pointerEvents={"none"}
+            children={<Search2Icon fontSize={"sm"} />}
+          />
           <Input
             type="search"
             placeholder="search people or group .."

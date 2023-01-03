@@ -42,7 +42,8 @@ export default function App({ Component, pageProps }: AppProps) {
     router?.pathname !== "/login" &&
       router?.pathname !== "/signup" &&
       router?.pathname !== "/404" &&
-      router?.pathname !== "/profile"
+      router?.pathname !== "/profile" &&
+      router?.pathname !== "/settings"
   );
   const notArticlesPage = Boolean(router?.pathname !== "/articles");
   const btnRef = useRef<HTMLButtonElement | null>(null);

@@ -26,7 +26,7 @@ import FacebookLogoSVG from "../components/FacebookLogoSVG";
 import GoogleLogoSVG from "../components/GoogleLogoSVG";
 import Head from "next/head";
 
-const login = () => {
+const Login = () => {
   const [maxLargeMediaQuery] = useMediaQuery("(max-width: 992px)");
   const [formData, setFormData] = useState<ILoginFormData>({
     email: "",
@@ -245,4 +245,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

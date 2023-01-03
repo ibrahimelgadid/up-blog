@@ -229,7 +229,7 @@ const Signup = () => {
                   textAlign={"start"}
                   textTransform={"uppercase"}
                 >
-                  i agree on the terms and conditions of "up" services
+                  i agree on the terms and conditions of &quot up &quot services
                 </Text>
               </Checkbox>
             </HStack>

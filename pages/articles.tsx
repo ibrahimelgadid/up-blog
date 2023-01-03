@@ -85,8 +85,8 @@ const articles = () => {
       >
         {Array.isArray(articlesDataList) &&
           articlesDataList.map((article) => (
-            <ListItem mb={"1rem"} marginInlineEnd={"1rem"}>
-              <ArticleCard key={nanoid(8)} ArticleCardData={article} />
+            <ListItem key={nanoid(8)} mb={"1rem"} marginInlineEnd={"1rem"}>
+              <ArticleCard ArticleCardData={article} />
             </ListItem>
           ))}
       </UnorderedList>
