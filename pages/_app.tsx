@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import type { AppProps } from "next/app";
 import {
   Button,
@@ -21,6 +21,7 @@ import LeftSidePannel from "../components/LeftSidePannel";
 import RightSidePannel from "../components/RightSidePannel";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import LoadingPage from "../components/LoadingPage/LoadingPage";
 
 const theme = extendTheme({
   fontWeights: {
@@ -36,6 +37,7 @@ const theme = extendTheme({
   },
 });
 export default function App({ Component, pageProps }: AppProps) {
+  const [showLoading, setShowLoading] = useState<boolean>(true);
   const [largeMedia] = useMediaQuery("(max-width: 992px)");
   const router = useRouter();
   const notPages: boolean = Boolean(
@@ -49,11 +51,28 @@ export default function App({ Component, pageProps }: AppProps) {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  useLayoutEffect(() => {
+    router.events.on("routeChangeStart", () => setShowLoading(true));
+    router.events.on("routeChangeComplete", () => setShowLoading(false));
+    router.events.on("routeChangeError", () => setShowLoading(false));
+  }, []);
+
+  useLayoutEffect(() => {
+    window?.addEventListener("load", () => {
+      if (router.isReady) {
+        setShowLoading(false);
+      }
+    });
+  }, [router.isReady]);
+
   if (router.pathname === "/") {
     return (
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+          <LoadingPage show={showLoading} />;
+        </ChakraProvider>
+      </>
     );
   } else {
     return (
@@ -78,7 +97,6 @@ export default function App({ Component, pageProps }: AppProps) {
             }
           />
         )}
-
         <Flex
           position={"relative"}
           minH={"100dvh"}
@@ -108,6 +126,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </DrawerContent>
           </Drawer>
         </Flex>
+        <LoadingPage show={showLoading} />;
       </ChakraProvider>
     );
   }

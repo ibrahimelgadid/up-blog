@@ -18,7 +18,7 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
     {
       key: nanoid(6),
       label: "home",
-      url: "/",
+      url: "/home",
       currentTab: "home",
       icon: <HomeIcon width={"20px"} />,
     },
