@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
     router.events.on("routeChangeStart", () => setShowLoading(true));
     router.events.on("routeChangeComplete", () => setShowLoading(false));
     router.events.on("routeChangeError", () => setShowLoading(false));
-  }, []);
+  }, [router.events]);
 
   useLayoutEffect(() => {
     window?.addEventListener("load", () => {

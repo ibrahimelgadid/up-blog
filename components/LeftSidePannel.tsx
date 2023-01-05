@@ -254,6 +254,7 @@ function LeftSidePannel() {
               {Array.isArray(filterTopArticlesOptions) &&
                 filterTopArticlesOptions.map((option) => (
                   <Radio
+                    key={nanoid(8)}
                     colorScheme={"messenger"}
                     value={option.radioItem.value}
                   >
@@ -290,6 +291,7 @@ function LeftSidePannel() {
               {Array.isArray(filterTopSubjectOptions) &&
                 filterTopSubjectOptions.map((option) => (
                   <Radio
+                    key={nanoid(8)}
                     colorScheme={"messenger"}
                     value={option.radioItem.label}
                   >
