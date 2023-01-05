@@ -75,6 +75,7 @@ function HeadersBar({ appDrowerButton }: INavbarProps) {
                   lastName: "shehata",
                   isOnline: true,
                   username: "ahmed98",
+                  avatar: "https://picsum.photos/150",
                 }}
               />
             </>

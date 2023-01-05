@@ -1,26 +1,25 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+
 import {
   Avatar,
   AvatarBadge,
   Button,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   HStack,
-  Image,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Stack,
+  Switch,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import { InboxIcon, LanguageIcon } from "@heroicons/react/24/solid";
 import { NavbarControlButtonsProps } from "../lib/interfaces/INavbar";
 import {
-  ArrowTopRightOnSquareIcon,
-  UserGroupIcon,
   ArrowLeftOnRectangleIcon,
   SwatchIcon,
 } from "@heroicons/react/24/outline";
@@ -80,90 +79,89 @@ function NavbarControlButtons({ userData }: NavbarControlButtonsProps) {
               </Text>
             </Stack>
           </MenuButton>
-          <MenuList>
-            <MenuItem>
-              <Flex
-                width={"full"}
-                justify={"start"}
-                alignItems={"center"}
-                gap={"0.5rem"}
-              >
-                <Stack w={"30%"}>
+          <MenuList paddingBlockEnd={"0px"}>
+            <Text
+              fontSize={"sm"}
+              fontWeight={"semibold"}
+              textTransform={"capitalize"}
+              color={"chakra-placeholder-color"}
+              px={"0.5rem"}
+              mb={"1rem"}
+            >
+              quick settings
+            </Text>
+            <MenuItem paddingInline={"4px"} pr={"8px "} paddingBlock={"8px"}>
+              <Button
+                as={NextLink}
+                href={"/profile"}
+                variant={"link"}
+                inlineSize={"full"}
+                justifyContent={"space-between"}
+                leftIcon={
                   <Avatar
-                    size={"md"}
-                    name={`${userData?.firstName} ${userData?.lastName}`}
+                    size={"xs"}
                     src={userData?.avatar}
-                    loading={"lazy"}
-                  >
-                    <AvatarBadge
-                      boxSize={"50%"}
-                      bg={userData?.isOnline ? "green.500" : "gray.500"}
-                    />
-                  </Avatar>
-                </Stack>
-                <VStack justify={"center"} alignItems={"flex-start"}>
-                  <Link href="/profile" textTransform={"capitalize"}>
-                    profile settings
-                  </Link>
-                  <Text
-                    marginTop={"2px !important"}
-                    color={"gray.400"}
-                    lineHeight={"15px"}
-                    fontSize={"sm"}
-                    display={"flex"}
-                    gap={"10px"}
-                  >
-                    @{userData.username}
-                    <ArrowTopRightOnSquareIcon width={"15px"} />
-                  </Text>
-                </VStack>
-              </Flex>
-            </MenuItem>
-            <Divider />
-            <MenuItem paddingInline={"4px"} paddingBlock={"2px"}>
-              <Button
-                as={NextLink}
-                href="#"
-                leftIcon={<UserGroupIcon width={"23px"} />}
-                inlineSize={"full"}
-                justifyContent={"flex-start"}
-                variant="ghost"
-                textTransform={"capitalize"}
-                size={"sm"}
+                    name={`${userData?.firstName} ${userData?.lastName}`}
+                  />
+                }
+                rightIcon={<ExternalLinkIcon fontSize={"12px"} mx={"4px"} />}
               >
-                peoples
+                <Text
+                  marginInlineEnd={"auto"}
+                  textTransform={"capitalize"}
+                  fontWeight={"normal"}
+                  color={"black"}
+                >
+                  profile
+                </Text>
               </Button>
             </MenuItem>
             <Divider />
-
-            <MenuItem paddingInline={"4px"} paddingBlock={"2px"}>
-              <Button
-                as={NextLink}
-                href="#"
-                leftIcon={<SwatchIcon width={"23px"} />}
-                inlineSize={"full"}
-                justifyContent={"flex-start"}
-                variant="ghost"
-                textTransform={"capitalize"}
-                size={"sm"}
+            <MenuItem
+              paddingInline={"4px"}
+              pr={"8px "}
+              paddingBlock={"8px"}
+              icon={<SwatchIcon width={"20px"} />}
+            >
+              <FormControl
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                flexDir={"row"}
               >
-                color mode
-              </Button>
+                <FormLabel
+                  htmlFor="switch-clr-mode"
+                  fontSize={"sm"}
+                  my={"auto"}
+                  textTransform={"capitalize"}
+                >
+                  color mode
+                </FormLabel>
+                <Switch id="switch-clr-mode" size={"sm"} />
+              </FormControl>
             </MenuItem>
             <Divider />
-
-            <MenuItem paddingInline={"4px"} paddingBlock={"2px"}>
+            <MenuItem
+              paddingInline={"4px"}
+              paddingBlock={"2px"}
+              icon={
+                <ArrowLeftOnRectangleIcon
+                  width={"23px"}
+                  color={"var(--chakra-colors-red-600)"}
+                />
+              }
+            >
               <Button
                 as={NextLink}
                 href="#"
-                leftIcon={<ArrowLeftOnRectangleIcon width={"23px"} />}
                 inlineSize={"full"}
+                px={"0px"}
                 justifyContent={"flex-start"}
                 variant="ghost"
                 color={"red.600"}
                 textTransform={"uppercase"}
                 fontWeight={"semibold"}
-                size={"sm"}
+                size={"xs"}
               >
                 logout
               </Button>

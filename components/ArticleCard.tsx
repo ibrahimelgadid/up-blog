@@ -6,6 +6,7 @@ import {
   HStack,
   Image,
   Text,
+  useMediaQuery,
   VStack,
 } from "@chakra-ui/react";
 import { BookmarkIcon } from "@heroicons/react/24/solid";
@@ -15,6 +16,7 @@ import { IArticleCardProps } from "../lib/interfaces/IArticles";
 import UPIconSVG from "./UPIconSVG";
 
 function ArticleCard({ ArticleCardData }: IArticleCardProps) {
+  const [maxLargeMediaQuery] = useMediaQuery("(max-width: 992px)");
   return (
     <HStack
       as={Link}
@@ -25,8 +27,13 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
       shadow={"md"}
       alignItems={"flex-start"}
       padding={"1rem"}
+      flexDirection={maxLargeMediaQuery ? "column" : "row"}
     >
-      <AspectRatio as={"figure"} w={"286px"} ratio={20 / 18}>
+      <AspectRatio
+        as={"figure"}
+        w={maxLargeMediaQuery ? "full" : "286px"}
+        ratio={maxLargeMediaQuery ? 20 / 9 : 20 / 18}
+      >
         <Image
           src={ArticleCardData?.media}
           alt={"article-img"}
@@ -38,7 +45,7 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
       <VStack
         alignItems={"flex-start"}
         justifyContent={"center"}
-        w={"80%"}
+        w={maxLargeMediaQuery ? "full" : "80%"}
         padding={"0.5rem"}
       >
         <VStack
@@ -85,7 +92,7 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
         <VStack>
           <Text>{ArticleCardData?.articleDescribtion}</Text>
         </VStack>
-        <HStack>
+        <HStack width={"full"} justifyContent={"space-between"}>
           <Button
             size={"sm"}
             variant={"ghost"}

@@ -23,6 +23,102 @@ import {
 } from "../lib/interfaces/ILeftSidePannel";
 import SideWritersList from "./SideWritersList";
 import { useRouter } from "next/router";
+export const filterTopArticlesOptions: ITopArticlesRadioOptions[] = [
+  {
+    radioItem: {
+      label: "all articles",
+      value: "all-articles",
+      checked: true,
+    },
+  },
+  {
+    radioItem: {
+      label: "most articles",
+      value: "most-articles ",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "last published",
+      value: "last-published",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "form A - Z",
+      value: "A-Z ",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "from Z - A",
+      value: "A-Z",
+      checked: false,
+    },
+  },
+];
+export const filterTopSubjectOptions: ITopSubjectsRadioOptions[] = [
+  {
+    radioItem: {
+      label: "all",
+      value: "all ",
+      checked: true,
+    },
+  },
+  {
+    radioItem: {
+      label: "sports",
+      value: "sports ",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "Policy",
+      value: "Policy ",
+      checked: false,
+    },
+  },
+
+  {
+    radioItem: {
+      label: "Finance and business",
+      value: "Finance-and-business",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "Software development",
+      value: "Software development",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "life style",
+      value: "life-style ",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "health",
+      value: "health",
+      checked: false,
+    },
+  },
+  {
+    radioItem: {
+      label: "travel",
+      value: "travel",
+      checked: false,
+    },
+  },
+];
 
 function LeftSidePannel() {
   const sideFaviourSourceData: IWritersPeopleListData[] = [
@@ -55,102 +151,6 @@ function LeftSidePannel() {
       name: "john doe 5",
       image: "https://picsum.photos/155.webp",
       articlesCount: 263,
-    },
-  ];
-  const filterTopArticlesOptions: ITopArticlesRadioOptions[] = [
-    {
-      radioItem: {
-        label: "all articles",
-        value: "all-articles",
-        checked: true,
-      },
-    },
-    {
-      radioItem: {
-        label: "most articles",
-        value: "most-articles ",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "last published",
-        value: "last-published",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "form A - Z",
-        value: "A-Z ",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "from Z - A",
-        value: "A-Z",
-        checked: false,
-      },
-    },
-  ];
-  const filterTopSubjectOptions: ITopSubjectsRadioOptions[] = [
-    {
-      radioItem: {
-        label: "all",
-        value: "all ",
-        checked: true,
-      },
-    },
-    {
-      radioItem: {
-        label: "sports",
-        value: "sports ",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "Policy",
-        value: "Policy ",
-        checked: false,
-      },
-    },
-
-    {
-      radioItem: {
-        label: "Finance and business",
-        value: "Finance-and-business",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "Software development",
-        value: "Software development",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "life style",
-        value: "life-style ",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "health",
-        value: "health",
-        checked: false,
-      },
-    },
-    {
-      radioItem: {
-        label: "travel",
-        value: "travel",
-        checked: false,
-      },
     },
   ];
 
