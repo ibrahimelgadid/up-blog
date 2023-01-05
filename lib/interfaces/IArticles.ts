@@ -15,4 +15,5 @@ export interface IArticleCardData {
   puplishAt: string;
   articleDescribtion: string;
   articleContent: string;
+  supportCount: string;
 }

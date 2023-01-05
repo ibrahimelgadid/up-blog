@@ -1,5 +1,6 @@
 import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
 import { nanoid } from "@reduxjs/toolkit";
+import Head from "next/head";
 import React from "react";
 import ArticleCard from "../components/ArticleCard";
 import { IArticleCardData } from "../lib/interfaces/IArticles";
@@ -22,6 +23,7 @@ const articles = () => {
         firstName: "John",
         lastName: "Doe",
       },
+      supportCount: "353,022 K",
     },
     {
       id: nanoid(4),
@@ -39,6 +41,7 @@ const articles = () => {
         firstName: "John",
         lastName: "Doe",
       },
+      supportCount: "802 ",
     },
     {
       id: nanoid(4),
@@ -56,6 +59,7 @@ const articles = () => {
         firstName: "John",
         lastName: "Doe",
       },
+      supportCount: "2,872 K",
     },
     {
       id: nanoid(4),
@@ -72,25 +76,32 @@ const articles = () => {
         firstName: "John",
         lastName: "Doe",
       },
+      supportCount: "23,802 K",
     },
   ];
+  console.log(articlesDataList);
   return (
-    <Flex as={"main"} w={"80%"} marginInlineEnd={"auto"}>
-      <UnorderedList
-        paddingBlock={"1rem"}
-        listStyleType={"none"}
-        height={"91dvh"}
-        minHeight={"91dvh"}
-        overflowY={"auto"}
-      >
-        {Array.isArray(articlesDataList) &&
-          articlesDataList.map((article) => (
-            <ListItem key={nanoid(8)} mb={"1rem"} marginInlineEnd={"1rem"}>
-              <ArticleCard ArticleCardData={article} />
-            </ListItem>
-          ))}
-      </UnorderedList>
-    </Flex>
+    <>
+      <Head>
+        <title>articles</title>
+      </Head>
+      <Flex as={"main"} w={"60%"} marginInline={"auto"}>
+        <UnorderedList
+          paddingBlock={"1rem"}
+          listStyleType={"none"}
+          height={"91dvh"}
+          minHeight={"91dvh"}
+          overflowY={"auto"}
+        >
+          {Array.isArray(articlesDataList) &&
+            articlesDataList.map((article) => (
+              <ListItem key={nanoid(8)} mb={"1rem"} marginInlineEnd={"1rem"}>
+                <ArticleCard ArticleCardData={article} />
+              </ListItem>
+            ))}
+        </UnorderedList>
+      </Flex>
+    </>
   );
 };
 

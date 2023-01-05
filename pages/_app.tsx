@@ -104,7 +104,7 @@ export default function App({ Component, pageProps }: AppProps) {
           paddingInline={largeMedia ? "0.5rem" : "3.5rem"}
           bg={"gray.100"}
         >
-          {!largeMedia && notPages && notArticlesPage && <LeftSidePannel />}
+          {!largeMedia && notPages && <LeftSidePannel />}
 
           <Component {...pageProps} />
           {!largeMedia && notPages && <RightSidePannel />}

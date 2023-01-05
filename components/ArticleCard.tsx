@@ -1,35 +1,38 @@
 import {
   AspectRatio,
   Avatar,
+  Button,
   Heading,
   HStack,
   Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { BookmarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 import { IArticleCardProps } from "../lib/interfaces/IArticles";
+import UPIconSVG from "./UPIconSVG";
 
 function ArticleCard({ ArticleCardData }: IArticleCardProps) {
   return (
-    <VStack
+    <HStack
       as={Link}
       href={`/articles/${ArticleCardData?.id}`}
       bg={"white"}
       border={"1px solid"}
       borderColor={"chakra-border-color"}
-      shadow={"sm"}
+      shadow={"md"}
       alignItems={"flex-start"}
       padding={"1rem"}
     >
-      <AspectRatio as={"figure"} w={"100%"} h={"310px"} ratio={16 / 12}>
+      <AspectRatio as={"figure"} w={"286px"} ratio={20 / 18}>
         <Image
           src={ArticleCardData?.media}
           alt={"article-img"}
           objectFit={"cover"}
           w={"full"}
-          borderRadius={"md"}
+          borderRadius={"sm"}
         />
       </AspectRatio>
       <VStack
@@ -82,8 +85,22 @@ function ArticleCard({ ArticleCardData }: IArticleCardProps) {
         <VStack>
           <Text>{ArticleCardData?.articleDescribtion}</Text>
         </VStack>
+        <HStack>
+          <Button
+            size={"sm"}
+            variant={"ghost"}
+            colorScheme={"blackAlpha"}
+            type={"button"}
+          >
+            <UPIconSVG />
+            {ArticleCardData?.supportCount}
+          </Button>
+          <Button size={"sm"} variant={"ghost"} colorScheme={"messenger"}>
+            <BookmarkIcon width={"20px"} />
+          </Button>
+        </HStack>
       </VStack>
-    </VStack>
+    </HStack>
   );
 }
 

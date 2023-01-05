@@ -1,16 +1,28 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  MagnifyingGlassIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/solid";
+import { FunnelIcon, TrophyIcon } from "@heroicons/react/24/outline";
 import {
   Box,
   Flex,
   Input,
   InputGroup,
   InputLeftElement,
+  Radio,
+  RadioGroup,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import { nanoid } from "@reduxjs/toolkit";
-import React from "react";
-import { IWritersPeopleListData } from "../lib/interfaces/ILeftSidePannel";
+import { useState } from "react";
+import {
+  ITopArticlesRadioOptions,
+  ITopSubjectsRadioOptions,
+  IWritersPeopleListData,
+} from "../lib/interfaces/ILeftSidePannel";
 import SideWritersList from "./SideWritersList";
+import { useRouter } from "next/router";
 
 function LeftSidePannel() {
   const sideFaviourSourceData: IWritersPeopleListData[] = [
@@ -45,11 +57,128 @@ function LeftSidePannel() {
       articlesCount: 263,
     },
   ];
+  const filterTopArticlesOptions: ITopArticlesRadioOptions[] = [
+    {
+      radioItem: {
+        label: "all articles",
+        value: "all-articles",
+        checked: true,
+      },
+    },
+    {
+      radioItem: {
+        label: "most articles",
+        value: "most-articles ",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "last published",
+        value: "last-published",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "form A - Z",
+        value: "A-Z ",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "from Z - A",
+        value: "A-Z",
+        checked: false,
+      },
+    },
+  ];
+  const filterTopSubjectOptions: ITopSubjectsRadioOptions[] = [
+    {
+      radioItem: {
+        label: "all",
+        value: "all ",
+        checked: true,
+      },
+    },
+    {
+      radioItem: {
+        label: "sports",
+        value: "sports ",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "Policy",
+        value: "Policy ",
+        checked: false,
+      },
+    },
+
+    {
+      radioItem: {
+        label: "Finance and business",
+        value: "Finance-and-business",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "Software development",
+        value: "Software development",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "life style",
+        value: "life-style ",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "health",
+        value: "health",
+        checked: false,
+      },
+    },
+    {
+      radioItem: {
+        label: "travel",
+        value: "travel",
+        checked: false,
+      },
+    },
+  ];
+
+  const [selectedArticlesFilter, setSelectedArticlesFilter] =
+    useState<string>("all-articles");
+  const [selectedTopSubjectFilter, setSelectedTopSubjectFilter] =
+    useState<string>("all");
+  const router = useRouter();
+  const dontShowInRoutes = router.pathname === "/articles";
+  const isArticlesRoute = router.pathname === "/articles";
+
+  const handleSortArticles = (
+    categoryVal: string,
+    name: "sortArticles" | "topSubjects"
+  ) => {
+    if (name === "sortArticles") {
+      setSelectedArticlesFilter(categoryVal);
+    } else {
+      setSelectedTopSubjectFilter(categoryVal);
+    }
+  };
+
   return (
     <Box
       position={"fixed"}
       top={"53px"}
       left={"0px"}
+      zIndex={"banner"}
       as="aside"
       width={"22%"}
       height={"89%"}
@@ -73,27 +202,106 @@ function LeftSidePannel() {
           />
         </InputGroup>
       </Flex>
-      <Flex
-        mt={"1rem"}
-        flexDirection={"column"}
-        maxHeight={"100%"}
-        overflowY={"auto"}
-        scrollBehavior={"smooth"}
-        scrollSnapType={"y"}
-        scrollSnapAlign={"start"}
-      >
-        <Text
-          fontSize={"sm"}
-          fontWeight={"bold"}
-          textTransform={"uppercase"}
-          color="InactiveCaptionText"
-          mr={"auto"}
-          paddingLeft={"5px"}
+      {!dontShowInRoutes && (
+        <Flex
+          mt={"1rem"}
+          flexDirection={"column"}
+          maxHeight={"100%"}
+          overflowY={"auto"}
+          scrollBehavior={"smooth"}
+          scrollSnapType={"y"}
+          scrollSnapAlign={"start"}
         >
-          most popular writers
-        </Text>
-        <SideWritersList writerPeopleListData={sideFaviourSourceData} />
-      </Flex>
+          <Text
+            fontSize={"sm"}
+            fontWeight={"bold"}
+            textTransform={"uppercase"}
+            color="InactiveCaptionText"
+            mr={"auto"}
+            paddingLeft={"5px"}
+          >
+            most popular writers
+          </Text>
+          <SideWritersList writerPeopleListData={sideFaviourSourceData} />
+        </Flex>
+      )}
+      {isArticlesRoute && (
+        <>
+          <VStack alignItems={"flex-start"} mt={"1rem"}>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              gap={"0.5rem"}
+              mt={"0.5rem"}
+            >
+              <ChevronRightIcon width={"16px"} color="gray.500" />
+              <Text fontWeight={"semibold"} textTransform={"uppercase"}>
+                filter articles
+              </Text>
+              <TrophyIcon width={"16px"} color="gray.500" />
+            </Box>
+            <RadioGroup
+              paddingInlineStart={"1rem"}
+              display={"flex"}
+              name={"sortArticles"}
+              flexDirection={"column"}
+              onChange={(categoryVal) =>
+                handleSortArticles(categoryVal, "sortArticles")
+              }
+              value={selectedArticlesFilter}
+            >
+              {Array.isArray(filterTopArticlesOptions) &&
+                filterTopArticlesOptions.map((option) => (
+                  <Radio
+                    colorScheme={"messenger"}
+                    value={option.radioItem.value}
+                  >
+                    <Text textTransform={"capitalize"}>
+                      {option.radioItem.label}
+                    </Text>
+                  </Radio>
+                ))}
+            </RadioGroup>
+          </VStack>
+          <VStack alignItems={"flex-start"} mt={"1rem"}>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              gap={"0.5rem"}
+              mt={"0.5rem"}
+            >
+              <ChevronRightIcon width={"16px"} color="gray.500" />
+              <Text fontWeight={"semibold"} textTransform={"uppercase"}>
+                top subjects
+              </Text>
+              <FunnelIcon width={"16px"} color="gray.500" />
+            </Box>
+            <RadioGroup
+              paddingInlineStart={"1rem"}
+              display={"flex"}
+              flexDirection={"column"}
+              onChange={(categoryVal) =>
+                handleSortArticles(categoryVal, "topSubjects")
+              }
+              value={selectedTopSubjectFilter}
+            >
+              {Array.isArray(filterTopSubjectOptions) &&
+                filterTopSubjectOptions.map((option) => (
+                  <Radio
+                    colorScheme={"messenger"}
+                    value={option.radioItem.label}
+                  >
+                    <Text textTransform={"capitalize"}>
+                      {option.radioItem.label}
+                    </Text>
+                  </Radio>
+                ))}
+            </RadioGroup>
+          </VStack>
+        </>
+      )}
     </Box>
   );
 }

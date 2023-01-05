@@ -2,9 +2,15 @@ import { Flex, Button, TabList, Tab, Tabs, Text, Link } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { CurrentTabType, navbarProps } from "../lib/interfaces/INavbar";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 
 function Navbar({ navbarDataSource }: navbarProps) {
-  const [currentTabState, setCurrentTab] = useState<CurrentTabType>("home");
+  const { pathname } = useRouter();
+  const currentRoute = pathname.split("/")?.[1] as CurrentTabType;
+  const [currentTabState, setCurrentTab] =
+    useState<CurrentTabType>(currentRoute);
+
+  console.log(currentTabState);
   return (
     <Flex
       as={"nav"}
@@ -14,7 +20,7 @@ function Navbar({ navbarDataSource }: navbarProps) {
       paddingInline={"0.5"}
       justifyContent={"flex-end"}
     >
-      <Tabs variant={"soft-rounded"}>
+      <Tabs isManual isLazy variant={"soft-rounded"}>
         <TabList as={"ul"} gap={"5px"} paddingBlock={"0.5rem"}>
           {Array.isArray(navbarDataSource) &&
             navbarDataSource.map(({ currentTab, icon, key, label, url }) => (
@@ -45,15 +51,7 @@ function Navbar({ navbarDataSource }: navbarProps) {
                     <Text>{label}</Text>
                   </>
                 ) : (
-                  <
-                    // as={NextLink}
-                    // display={"flex"}
-                    // alignItems={"center"}
-                    // justifyContent={"center"}
-                    // href={url}
-                  >
-                    {icon}
-                  </>
+                  <>{icon}</>
                 )}
               </Tab>
             ))}
